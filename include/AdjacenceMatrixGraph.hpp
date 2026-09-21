@@ -17,7 +17,7 @@
 
 
     private:
-    std::vector<std::vector<int>> matrix;
+    std::vector<std::vector<size_t>> matrix;
 
 
     protected:

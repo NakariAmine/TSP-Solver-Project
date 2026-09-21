@@ -7,9 +7,10 @@
 
 
 AdjacenceMatrixGraph::AdjacenceMatrixGraph
-(const std::vector<std::vector<int>>& input) : matrix(input){
+(const std::vector<std::vector<size_t>>& input): matrix(input) {
 
 };
+
 
 size_t AdjacenceMatrixGraph::size() const {
 
