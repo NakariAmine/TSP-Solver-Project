@@ -1,4 +1,4 @@
- #include "AdjacenceMatrixGraph.hpp"
+#include "AdjacenceMatrixGraph.hpp"
 #include "AdjacenceMatrixWeightedGraph.hpp"
 #include "CoordinateGraph.hpp"
 
@@ -37,7 +37,7 @@ int main()
         {3}           // Person 4 knows 3
     };
 
-    AdjacenceListGraph social_graph(social_network);
+    AdjacenceMatrixGraph social_graph(social_network);
 
     std::vector<size_t> social_path =
         social_graph.find_path(0, 4);

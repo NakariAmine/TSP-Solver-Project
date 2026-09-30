@@ -38,15 +38,15 @@ file(GLOB HEADERS "${INCLUDE_DIR}/*.hpp")
 # and should not be compiled into it.
 # Instead, it will be compiled into the main executable.
 # Add here any other source files that should be excluded from the library.
-list(REMOVE_ITEM SOURCES "${SOURCE_DIR}/main.cpp")
+list(REMOVE_ITEM SOURCES "${SOURCE_DIR}/Parser_Matrix.cpp")
 
 # --- Including libraries ---
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDE_DIR})
 
 # --- Main executable ---
-add_executable(main ${SOURCE_DIR}/main.cpp)
-target_link_libraries(main PRIVATE ${PROJECT_NAME})
+add_executable(Parser_Matrix ${SOURCE_DIR}/Parser_Matrix.cpp)
+target_link_libraries(Parser_Matrix PRIVATE ${PROJECT_NAME})
 
 
 # --- External dependencies ---

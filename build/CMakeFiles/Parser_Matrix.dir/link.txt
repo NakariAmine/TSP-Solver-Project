@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++ -Wall -Wextra -Werror -O3 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/Parser_Matrix.dir/src/Parser_Matrix.cpp.o -o Parser_Matrix  libmy_project.a
