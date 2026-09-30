@@ -56,7 +56,6 @@ void write_tour(
 
 namespace fs = std::filesystem;
 
-// Assisted by ChatGPT, 2026-09-30.
 struct TSPData {
     size_t dimension;
     AdjacenceMatrixWeightedGraph graph;
@@ -67,7 +66,6 @@ std::pair<std::string, TSPData> parse_tsp(
     const std::string& filename
 );
 
-// Assisted by ChatGPT, 2026-09-30.
 int main(int argc, char* argv[])
 {
     if (argc != 3) {
