@@ -1,3 +1,5 @@
+#include "AdjacenceMatrixWeightedGraph.hpp"
+
 #include <filesystem>
 #include <fstream>
 #include <iomanip>
@@ -9,40 +11,89 @@
 #include <utility>
 #include <vector>
 
-namespace fs = std::filesystem;
-
-struct TSPData {
-    size_t dimension = 0;
-    std::vector<std::vector<double>> matrix;
-    std::string type;
-};
-
-std::pair<std::string, TSPData> parse_tsp(const std::string& filename);
-
-int main()
+// Assisted by ChatGPT, 2026-09-30.
+std::vector<size_t> trivial_solution(
+    const AdjacenceMatrixWeightedGraph& graph
+)
 {
-    const fs::path folder = "../TSP-instances/lower_diag";
-    std::map<std::string, TSPData> instances;
+    std::vector<size_t> tour;
 
-    for (const auto& entry : fs::directory_iterator(folder)) {
-        if (entry.is_regular_file() &&
-            entry.path().extension() == ".tsp") {
-
-            std::cout << "Reading: " << entry.path() << '\n';
-
-            auto [name, data] = parse_tsp(entry.path().string());
-            instances.insert_or_assign(name, std::move(data));
-        }
+    for (size_t i = 0; i < graph.size(); ++i) {
+        tour.push_back(i);
     }
 
-    for (const auto& [name, data] : instances) {
-        std::cout << name
-                  << " | Dimension: " << data.dimension
-                  << " | Type: " << data.type << '\n';
+    return tour;
+}
+
+void write_tour(
+    const std::string& filename,
+    const std::string& name,
+    const std::vector<size_t>& tour
+)
+{
+    std::ofstream output(filename);
+
+    if (!output) {
+        throw std::runtime_error("Cannot open output file: " + filename);
+    }
+
+    output << "NAME : " << name << ".tour\n";
+    output << "TYPE : TOUR\n";
+    output << "DIMENSION : " << tour.size() << '\n';
+    output << "TOUR_SECTION\n";
+
+    for (size_t city : tour) {
+        output << city + 1 << '\n';
+    }
+
+    output << "-1\n";
+    output << "EOF\n";
+
+    if (!output) {
+        throw std::runtime_error("Failed to write tour: " + filename);
     }
 }
 
-std::pair<std::string, TSPData> parse_tsp(const std::string& filename)
+namespace fs = std::filesystem;
+
+// Assisted by ChatGPT, 2026-09-30.
+struct TSPData {
+    size_t dimension;
+    AdjacenceMatrixWeightedGraph graph;
+    std::string type;
+};
+
+std::pair<std::string, TSPData> parse_tsp(
+    const std::string& filename
+);
+
+// Assisted by ChatGPT, 2026-09-30.
+int main(int argc, char* argv[])
+{
+    if (argc != 3) {
+        std::cerr << "Usage: " << argv[0]
+                  << " <instance_path> <output_path>\n";
+        return 1;
+    }
+
+    try {
+        auto [name, data] = parse_tsp(argv[1]);
+
+        auto tour = trivial_solution(data.graph);
+        write_tour(argv[2], name, tour);
+
+        std::cout << "Tour saved to " << argv[2] << '\n';
+    } catch (const std::exception& error) {
+        std::cerr << error.what() << '\n';
+        return 1;
+    }
+
+    return 0;
+}
+
+std::pair<std::string, TSPData> parse_tsp(
+    const std::string& filename
+)
 {
     std::ifstream file(filename);
 
@@ -51,41 +102,51 @@ std::pair<std::string, TSPData> parse_tsp(const std::string& filename)
     }
 
     std::string name;
-    TSPData data;
+    std::string type;
+    std::string weight_type;
+    std::string weight_format;
+    size_t dimension = 0;
     std::string line;
 
     while (std::getline(file, line)) {
-        // Read the first word to identify a section marker.
         std::istringstream line_stream(line);
         std::string first_word;
         line_stream >> first_word;
 
         if (first_word == "EDGE_WEIGHT_SECTION") {
-            if (name.empty() || data.dimension == 0 ||
-                data.type != "TSP") {
+            if (name.empty() || dimension == 0 || type != "TSP") {
                 throw std::runtime_error("Missing or invalid header");
             }
 
-            data.matrix = std::vector<std::vector<double>>(
-                data.dimension,
-                std::vector<double>(data.dimension, 0.0)
+            if (weight_type != "EXPLICIT" ||
+                weight_format != "LOWER_DIAG_ROW") {
+                throw std::runtime_error(
+                    "Expected EXPLICIT weights in LOWER_DIAG_ROW format"
+                );
+            }
+
+            // Build the full symmetric matrix.
+            std::vector<std::vector<double>> matrix(
+                dimension,
+                std::vector<double>(dimension, 0.0)
             );
 
-            for (size_t i = 0; i < data.dimension; ++i) {
+            for (size_t i = 0; i < dimension; ++i) {
                 for (size_t j = 0; j <= i; ++j) {
                     double weight;
 
                     if (!(file >> weight)) {
                         throw std::runtime_error(
-                            "Missing or invalid weight"
+                            "Missing or invalid weight in: " + filename
                         );
                     }
 
-                    data.matrix[i][j] = weight;
-                    data.matrix[j][i] = weight;
+                    matrix[i][j] = weight;
+                    matrix[j][i] = weight;
                 }
             }
 
+            // Save the matrix for inspection.
             std::ofstream output(filename + ".matrix.txt");
 
             if (!output) {
@@ -94,14 +155,22 @@ std::pair<std::string, TSPData> parse_tsp(const std::string& filename)
                 );
             }
 
-            for (const auto& row : data.matrix) {
+            for (const auto& row : matrix) {
                 for (double weight : row) {
                     output << std::setw(6) << weight;
                 }
                 output << '\n';
             }
 
-            return {name, std::move(data)};
+            // Construct your graph from the completed matrix.
+            return {
+                name,
+                TSPData{
+                    dimension,
+                    AdjacenceMatrixWeightedGraph(matrix),
+                    type
+                }
+            };
         }
 
         const auto colon = line.find(':');
@@ -120,37 +189,25 @@ std::pair<std::string, TSPData> parse_tsp(const std::string& filename)
         if (key == "NAME") {
             value_stream >> name;
         } else if (key == "TYPE") {
-            value_stream >> data.type;
+            value_stream >> type;
         } else if (key == "DIMENSION") {
-            const int dimension = std::stoi(value);
+            const int parsed_dimension = std::stoi(value);
 
-            if (dimension <= 0) {
+            if (parsed_dimension <= 0) {
                 throw std::runtime_error("Invalid DIMENSION");
             }
 
-            data.dimension = static_cast<size_t>(dimension);
+            dimension = static_cast<size_t>(parsed_dimension);
         } else if (key == "COMMENT") {
             std::cout << value << '\n';
         } else if (key == "EDGE_WEIGHT_TYPE") {
-            std::string weight_type;
             value_stream >> weight_type;
-
-            if (weight_type != "EXPLICIT") {
-                throw std::runtime_error(
-                    "This parser expects explicit weights"
-                );
-            }
         } else if (key == "EDGE_WEIGHT_FORMAT") {
-            std::string format;
-            value_stream >> format;
-
-            if (format != "LOWER_DIAG_ROW") {
-                throw std::runtime_error(
-                    "This parser expects LOWER_DIAG_ROW"
-                );
-            }
+            value_stream >> weight_format;
         }
     }
 
-    throw std::runtime_error("Missing EDGE_WEIGHT_SECTION");
+    throw std::runtime_error(
+        "Missing EDGE_WEIGHT_SECTION in: " + filename
+    );
 }
