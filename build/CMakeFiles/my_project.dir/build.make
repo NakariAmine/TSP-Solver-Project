@@ -156,62 +156,6 @@ CMakeFiles/my_project.dir/src/graph.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_project.dir/src/graph.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/graph.cpp" -o CMakeFiles/my_project.dir/src/graph.cpp.s
 
-CMakeFiles/my_project.dir/src/main.cpp.o: CMakeFiles/my_project.dir/flags.make
-CMakeFiles/my_project.dir/src/main.cpp.o: /Users/aminenakari/Downloads/M1\ AI/Programming/Project/implement/TSP-Solver-Project/src/main.cpp
-CMakeFiles/my_project.dir/src/main.cpp.o: CMakeFiles/my_project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/my_project.dir/src/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_project.dir/src/main.cpp.o -MF CMakeFiles/my_project.dir/src/main.cpp.o.d -o CMakeFiles/my_project.dir/src/main.cpp.o -c "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main.cpp"
-
-CMakeFiles/my_project.dir/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_project.dir/src/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main.cpp" > CMakeFiles/my_project.dir/src/main.cpp.i
-
-CMakeFiles/my_project.dir/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_project.dir/src/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main.cpp" -o CMakeFiles/my_project.dir/src/main.cpp.s
-
-CMakeFiles/my_project.dir/src/main2.cpp.o: CMakeFiles/my_project.dir/flags.make
-CMakeFiles/my_project.dir/src/main2.cpp.o: /Users/aminenakari/Downloads/M1\ AI/Programming/Project/implement/TSP-Solver-Project/src/main2.cpp
-CMakeFiles/my_project.dir/src/main2.cpp.o: CMakeFiles/my_project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/my_project.dir/src/main2.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_project.dir/src/main2.cpp.o -MF CMakeFiles/my_project.dir/src/main2.cpp.o.d -o CMakeFiles/my_project.dir/src/main2.cpp.o -c "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main2.cpp"
-
-CMakeFiles/my_project.dir/src/main2.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_project.dir/src/main2.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main2.cpp" > CMakeFiles/my_project.dir/src/main2.cpp.i
-
-CMakeFiles/my_project.dir/src/main2.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_project.dir/src/main2.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main2.cpp" -o CMakeFiles/my_project.dir/src/main2.cpp.s
-
-CMakeFiles/my_project.dir/src/main3.cpp.o: CMakeFiles/my_project.dir/flags.make
-CMakeFiles/my_project.dir/src/main3.cpp.o: /Users/aminenakari/Downloads/M1\ AI/Programming/Project/implement/TSP-Solver-Project/src/main3.cpp
-CMakeFiles/my_project.dir/src/main3.cpp.o: CMakeFiles/my_project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/my_project.dir/src/main3.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_project.dir/src/main3.cpp.o -MF CMakeFiles/my_project.dir/src/main3.cpp.o.d -o CMakeFiles/my_project.dir/src/main3.cpp.o -c "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main3.cpp"
-
-CMakeFiles/my_project.dir/src/main3.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_project.dir/src/main3.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main3.cpp" > CMakeFiles/my_project.dir/src/main3.cpp.i
-
-CMakeFiles/my_project.dir/src/main3.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_project.dir/src/main3.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main3.cpp" -o CMakeFiles/my_project.dir/src/main3.cpp.s
-
-CMakeFiles/my_project.dir/src/main4.cpp.o: CMakeFiles/my_project.dir/flags.make
-CMakeFiles/my_project.dir/src/main4.cpp.o: /Users/aminenakari/Downloads/M1\ AI/Programming/Project/implement/TSP-Solver-Project/src/main4.cpp
-CMakeFiles/my_project.dir/src/main4.cpp.o: CMakeFiles/my_project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/my_project.dir/src/main4.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_project.dir/src/main4.cpp.o -MF CMakeFiles/my_project.dir/src/main4.cpp.o.d -o CMakeFiles/my_project.dir/src/main4.cpp.o -c "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main4.cpp"
-
-CMakeFiles/my_project.dir/src/main4.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_project.dir/src/main4.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main4.cpp" > CMakeFiles/my_project.dir/src/main4.cpp.i
-
-CMakeFiles/my_project.dir/src/main4.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_project.dir/src/main4.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main4.cpp" -o CMakeFiles/my_project.dir/src/main4.cpp.s
-
 # Object files for target my_project
 my_project_OBJECTS = \
 "CMakeFiles/my_project.dir/src/AdjacenceMatrixGraph.cpp.o" \
@@ -219,11 +163,7 @@ my_project_OBJECTS = \
 "CMakeFiles/my_project.dir/src/CompleteGraph.cpp.o" \
 "CMakeFiles/my_project.dir/src/CoordinateGraph.cpp.o" \
 "CMakeFiles/my_project.dir/src/WeightedGraph.cpp.o" \
-"CMakeFiles/my_project.dir/src/graph.cpp.o" \
-"CMakeFiles/my_project.dir/src/main.cpp.o" \
-"CMakeFiles/my_project.dir/src/main2.cpp.o" \
-"CMakeFiles/my_project.dir/src/main3.cpp.o" \
-"CMakeFiles/my_project.dir/src/main4.cpp.o"
+"CMakeFiles/my_project.dir/src/graph.cpp.o"
 
 # External object files for target my_project
 my_project_EXTERNAL_OBJECTS =
@@ -234,13 +174,9 @@ libmy_project.a: CMakeFiles/my_project.dir/src/CompleteGraph.cpp.o
 libmy_project.a: CMakeFiles/my_project.dir/src/CoordinateGraph.cpp.o
 libmy_project.a: CMakeFiles/my_project.dir/src/WeightedGraph.cpp.o
 libmy_project.a: CMakeFiles/my_project.dir/src/graph.cpp.o
-libmy_project.a: CMakeFiles/my_project.dir/src/main.cpp.o
-libmy_project.a: CMakeFiles/my_project.dir/src/main2.cpp.o
-libmy_project.a: CMakeFiles/my_project.dir/src/main3.cpp.o
-libmy_project.a: CMakeFiles/my_project.dir/src/main4.cpp.o
 libmy_project.a: CMakeFiles/my_project.dir/build.make
 libmy_project.a: CMakeFiles/my_project.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX static library libmy_project.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library libmy_project.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/my_project.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/my_project.dir/link.txt --verbose=$(VERBOSE)
 

@@ -11,7 +11,6 @@
 #include <utility>
 #include <vector>
 
-// Assisted by ChatGPT, 2026-09-30.
 std::vector<size_t> trivial_solution(
     const AdjacenceMatrixWeightedGraph& graph
 )
@@ -68,19 +67,28 @@ std::pair<std::string, TSPData> parse_tsp(
 
 int main(int argc, char* argv[])
 {
-    if (argc != 3) {
+    if (argc != 2) {
         std::cerr << "Usage: " << argv[0]
-                  << " <instance_path> <output_path>\n";
+                  << " <instance_filename>\n";
         return 1;
     }
 
     try {
-        auto [name, data] = parse_tsp(argv[1]);
+        fs::path input_folder = "../TSP-instances/lower_diag";
+        fs::path output_folder = "../TOURS";
+
+        fs::create_directories(output_folder);
+
+        fs::path input_path = input_folder / argv[1];
+        fs::path output_path =
+            output_folder / (input_path.stem().string() + ".tour");
+
+        auto [name, data] = parse_tsp(input_path.string());
 
         auto tour = trivial_solution(data.graph);
-        write_tour(argv[2], name, tour);
+        write_tour(output_path.string(), name, tour);
 
-        std::cout << "Tour saved to " << argv[2] << '\n';
+        std::cout << "Tour saved to " << output_path << '\n';
     } catch (const std::exception& error) {
         std::cerr << error.what() << '\n';
         return 1;

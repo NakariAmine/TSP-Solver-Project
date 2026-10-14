@@ -14,10 +14,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/CoordinateGraph.cpp" "CMakeFiles/my_project.dir/src/CoordinateGraph.cpp.o" "gcc" "CMakeFiles/my_project.dir/src/CoordinateGraph.cpp.o.d"
   "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/WeightedGraph.cpp" "CMakeFiles/my_project.dir/src/WeightedGraph.cpp.o" "gcc" "CMakeFiles/my_project.dir/src/WeightedGraph.cpp.o.d"
   "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/graph.cpp" "CMakeFiles/my_project.dir/src/graph.cpp.o" "gcc" "CMakeFiles/my_project.dir/src/graph.cpp.o.d"
-  "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main.cpp" "CMakeFiles/my_project.dir/src/main.cpp.o" "gcc" "CMakeFiles/my_project.dir/src/main.cpp.o.d"
-  "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main2.cpp" "CMakeFiles/my_project.dir/src/main2.cpp.o" "gcc" "CMakeFiles/my_project.dir/src/main2.cpp.o.d"
-  "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main3.cpp" "CMakeFiles/my_project.dir/src/main3.cpp.o" "gcc" "CMakeFiles/my_project.dir/src/main3.cpp.o.d"
-  "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/src/main4.cpp" "CMakeFiles/my_project.dir/src/main4.cpp.o" "gcc" "CMakeFiles/my_project.dir/src/main4.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

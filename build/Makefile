@@ -310,102 +310,6 @@ src/graph.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/graph.cpp.s
 .PHONY : src/graph.cpp.s
 
-src/main.o: src/main.cpp.o
-.PHONY : src/main.o
-
-# target to build an object file
-src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
-
-src/main.i: src/main.cpp.i
-.PHONY : src/main.i
-
-# target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
-
-src/main.s: src/main.cpp.s
-.PHONY : src/main.s
-
-# target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
-
-src/main2.o: src/main2.cpp.o
-.PHONY : src/main2.o
-
-# target to build an object file
-src/main2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/main2.cpp.o
-.PHONY : src/main2.cpp.o
-
-src/main2.i: src/main2.cpp.i
-.PHONY : src/main2.i
-
-# target to preprocess a source file
-src/main2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/main2.cpp.i
-.PHONY : src/main2.cpp.i
-
-src/main2.s: src/main2.cpp.s
-.PHONY : src/main2.s
-
-# target to generate assembly for a file
-src/main2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/main2.cpp.s
-.PHONY : src/main2.cpp.s
-
-src/main3.o: src/main3.cpp.o
-.PHONY : src/main3.o
-
-# target to build an object file
-src/main3.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/main3.cpp.o
-.PHONY : src/main3.cpp.o
-
-src/main3.i: src/main3.cpp.i
-.PHONY : src/main3.i
-
-# target to preprocess a source file
-src/main3.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/main3.cpp.i
-.PHONY : src/main3.cpp.i
-
-src/main3.s: src/main3.cpp.s
-.PHONY : src/main3.s
-
-# target to generate assembly for a file
-src/main3.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/main3.cpp.s
-.PHONY : src/main3.cpp.s
-
-src/main4.o: src/main4.cpp.o
-.PHONY : src/main4.o
-
-# target to build an object file
-src/main4.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/main4.cpp.o
-.PHONY : src/main4.cpp.o
-
-src/main4.i: src/main4.cpp.i
-.PHONY : src/main4.i
-
-# target to preprocess a source file
-src/main4.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/main4.cpp.i
-.PHONY : src/main4.cpp.i
-
-src/main4.s: src/main4.cpp.s
-.PHONY : src/main4.s
-
-# target to generate assembly for a file
-src/main4.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/main4.cpp.s
-.PHONY : src/main4.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -437,18 +341,6 @@ help:
 	@echo "... src/graph.o"
 	@echo "... src/graph.i"
 	@echo "... src/graph.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
-	@echo "... src/main2.o"
-	@echo "... src/main2.i"
-	@echo "... src/main2.s"
-	@echo "... src/main3.o"
-	@echo "... src/main3.i"
-	@echo "... src/main3.s"
-	@echo "... src/main4.o"
-	@echo "... src/main4.i"
-	@echo "... src/main4.s"
 .PHONY : help
 
 
