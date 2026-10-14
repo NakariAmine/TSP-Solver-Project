@@ -131,7 +131,6 @@ std::pair<std::string, TSPData> parse_tsp(
                 );
             }
 
-            // Build the full symmetric matrix.
             std::vector<std::vector<double>> matrix(
                 dimension,
                 std::vector<double>(dimension, 0.0)
@@ -152,7 +151,6 @@ std::pair<std::string, TSPData> parse_tsp(
                 }
             }
 
-            // Save the matrix for inspection.
             std::ofstream output(filename + ".matrix.txt");
 
             if (!output) {
@@ -168,7 +166,6 @@ std::pair<std::string, TSPData> parse_tsp(
                 output << '\n';
             }
 
-            // Construct your graph from the completed matrix.
             return {
                 name,
                 TSPData{
