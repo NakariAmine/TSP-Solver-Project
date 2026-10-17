@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = "/Users/aminenakari/Downloads/M1 AI/Programming/Project/imple
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/opt/local/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -130,41 +140,30 @@ my_project/fast:
 .PHONY : my_project/fast
 
 #=============================================================================
-# Target rules for targets named Parser_Matrix
+# Target rules for targets named TSPsolver
 
 # Build rule for target.
-Parser_Matrix: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Parser_Matrix
-.PHONY : Parser_Matrix
+TSPsolver: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 TSPsolver
+.PHONY : TSPsolver
 
 # fast build rule for target.
-Parser_Matrix/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser_Matrix.dir/build.make CMakeFiles/Parser_Matrix.dir/build
-.PHONY : Parser_Matrix/fast
+TSPsolver/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPsolver.dir/build.make CMakeFiles/TSPsolver.dir/build
+.PHONY : TSPsolver/fast
 
-src/AdjacenceMatrixGraph.o: src/AdjacenceMatrixGraph.cpp.o
-.PHONY : src/AdjacenceMatrixGraph.o
+#=============================================================================
+# Target rules for targets named tests
 
-# target to build an object file
-src/AdjacenceMatrixGraph.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/AdjacenceMatrixGraph.cpp.o
-.PHONY : src/AdjacenceMatrixGraph.cpp.o
+# Build rule for target.
+tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests
+.PHONY : tests
 
-src/AdjacenceMatrixGraph.i: src/AdjacenceMatrixGraph.cpp.i
-.PHONY : src/AdjacenceMatrixGraph.i
-
-# target to preprocess a source file
-src/AdjacenceMatrixGraph.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/AdjacenceMatrixGraph.cpp.i
-.PHONY : src/AdjacenceMatrixGraph.cpp.i
-
-src/AdjacenceMatrixGraph.s: src/AdjacenceMatrixGraph.cpp.s
-.PHONY : src/AdjacenceMatrixGraph.s
-
-# target to generate assembly for a file
-src/AdjacenceMatrixGraph.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/AdjacenceMatrixGraph.cpp.s
-.PHONY : src/AdjacenceMatrixGraph.cpp.s
+# fast build rule for target.
+tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
+.PHONY : tests/fast
 
 src/AdjacenceMatrixWeightedGraph.o: src/AdjacenceMatrixWeightedGraph.cpp.o
 .PHONY : src/AdjacenceMatrixWeightedGraph.o
@@ -190,60 +189,36 @@ src/AdjacenceMatrixWeightedGraph.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/AdjacenceMatrixWeightedGraph.cpp.s
 .PHONY : src/AdjacenceMatrixWeightedGraph.cpp.s
 
-src/CompleteGraph.o: src/CompleteGraph.cpp.o
-.PHONY : src/CompleteGraph.o
+src/Coord_Parser.o: src/Coord_Parser.cpp.o
+.PHONY : src/Coord_Parser.o
 
 # target to build an object file
-src/CompleteGraph.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/CompleteGraph.cpp.o
-.PHONY : src/CompleteGraph.cpp.o
+src/Coord_Parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/Coord_Parser.cpp.o
+.PHONY : src/Coord_Parser.cpp.o
 
-src/CompleteGraph.i: src/CompleteGraph.cpp.i
-.PHONY : src/CompleteGraph.i
-
-# target to preprocess a source file
-src/CompleteGraph.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/CompleteGraph.cpp.i
-.PHONY : src/CompleteGraph.cpp.i
-
-src/CompleteGraph.s: src/CompleteGraph.cpp.s
-.PHONY : src/CompleteGraph.s
-
-# target to generate assembly for a file
-src/CompleteGraph.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/CompleteGraph.cpp.s
-.PHONY : src/CompleteGraph.cpp.s
-
-src/CoordinateGraph.o: src/CoordinateGraph.cpp.o
-.PHONY : src/CoordinateGraph.o
-
-# target to build an object file
-src/CoordinateGraph.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/CoordinateGraph.cpp.o
-.PHONY : src/CoordinateGraph.cpp.o
-
-src/CoordinateGraph.i: src/CoordinateGraph.cpp.i
-.PHONY : src/CoordinateGraph.i
+src/Coord_Parser.i: src/Coord_Parser.cpp.i
+.PHONY : src/Coord_Parser.i
 
 # target to preprocess a source file
-src/CoordinateGraph.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/CoordinateGraph.cpp.i
-.PHONY : src/CoordinateGraph.cpp.i
+src/Coord_Parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/Coord_Parser.cpp.i
+.PHONY : src/Coord_Parser.cpp.i
 
-src/CoordinateGraph.s: src/CoordinateGraph.cpp.s
-.PHONY : src/CoordinateGraph.s
+src/Coord_Parser.s: src/Coord_Parser.cpp.s
+.PHONY : src/Coord_Parser.s
 
 # target to generate assembly for a file
-src/CoordinateGraph.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/CoordinateGraph.cpp.s
-.PHONY : src/CoordinateGraph.cpp.s
+src/Coord_Parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/Coord_Parser.cpp.s
+.PHONY : src/Coord_Parser.cpp.s
 
 src/Parser_Matrix.o: src/Parser_Matrix.cpp.o
 .PHONY : src/Parser_Matrix.o
 
 # target to build an object file
 src/Parser_Matrix.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser_Matrix.dir/build.make CMakeFiles/Parser_Matrix.dir/src/Parser_Matrix.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/Parser_Matrix.cpp.o
 .PHONY : src/Parser_Matrix.cpp.o
 
 src/Parser_Matrix.i: src/Parser_Matrix.cpp.i
@@ -251,7 +226,7 @@ src/Parser_Matrix.i: src/Parser_Matrix.cpp.i
 
 # target to preprocess a source file
 src/Parser_Matrix.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser_Matrix.dir/build.make CMakeFiles/Parser_Matrix.dir/src/Parser_Matrix.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/Parser_Matrix.cpp.i
 .PHONY : src/Parser_Matrix.cpp.i
 
 src/Parser_Matrix.s: src/Parser_Matrix.cpp.s
@@ -259,8 +234,32 @@ src/Parser_Matrix.s: src/Parser_Matrix.cpp.s
 
 # target to generate assembly for a file
 src/Parser_Matrix.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser_Matrix.dir/build.make CMakeFiles/Parser_Matrix.dir/src/Parser_Matrix.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/Parser_Matrix.cpp.s
 .PHONY : src/Parser_Matrix.cpp.s
+
+src/Trivial_Solver.o: src/Trivial_Solver.cpp.o
+.PHONY : src/Trivial_Solver.o
+
+# target to build an object file
+src/Trivial_Solver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPsolver.dir/build.make CMakeFiles/TSPsolver.dir/src/Trivial_Solver.cpp.o
+.PHONY : src/Trivial_Solver.cpp.o
+
+src/Trivial_Solver.i: src/Trivial_Solver.cpp.i
+.PHONY : src/Trivial_Solver.i
+
+# target to preprocess a source file
+src/Trivial_Solver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPsolver.dir/build.make CMakeFiles/TSPsolver.dir/src/Trivial_Solver.cpp.i
+.PHONY : src/Trivial_Solver.cpp.i
+
+src/Trivial_Solver.s: src/Trivial_Solver.cpp.s
+.PHONY : src/Trivial_Solver.s
+
+# target to generate assembly for a file
+src/Trivial_Solver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPsolver.dir/build.make CMakeFiles/TSPsolver.dir/src/Trivial_Solver.cpp.s
+.PHONY : src/Trivial_Solver.cpp.s
 
 src/WeightedGraph.o: src/WeightedGraph.cpp.o
 .PHONY : src/WeightedGraph.o
@@ -310,6 +309,30 @@ src/graph.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/graph.cpp.s
 .PHONY : src/graph.cpp.s
 
+tests/tests.o: tests/tests.cpp.o
+.PHONY : tests/tests.o
+
+# target to build an object file
+tests/tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/tests.cpp.o
+.PHONY : tests/tests.cpp.o
+
+tests/tests.i: tests/tests.cpp.i
+.PHONY : tests/tests.i
+
+# target to preprocess a source file
+tests/tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/tests.cpp.i
+.PHONY : tests/tests.cpp.i
+
+tests/tests.s: tests/tests.cpp.s
+.PHONY : tests/tests.s
+
+# target to generate assembly for a file
+tests/tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/tests.cpp.s
+.PHONY : tests/tests.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -318,29 +341,31 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Parser_Matrix"
+	@echo "... test"
+	@echo "... TSPsolver"
 	@echo "... my_project"
-	@echo "... src/AdjacenceMatrixGraph.o"
-	@echo "... src/AdjacenceMatrixGraph.i"
-	@echo "... src/AdjacenceMatrixGraph.s"
+	@echo "... tests"
 	@echo "... src/AdjacenceMatrixWeightedGraph.o"
 	@echo "... src/AdjacenceMatrixWeightedGraph.i"
 	@echo "... src/AdjacenceMatrixWeightedGraph.s"
-	@echo "... src/CompleteGraph.o"
-	@echo "... src/CompleteGraph.i"
-	@echo "... src/CompleteGraph.s"
-	@echo "... src/CoordinateGraph.o"
-	@echo "... src/CoordinateGraph.i"
-	@echo "... src/CoordinateGraph.s"
+	@echo "... src/Coord_Parser.o"
+	@echo "... src/Coord_Parser.i"
+	@echo "... src/Coord_Parser.s"
 	@echo "... src/Parser_Matrix.o"
 	@echo "... src/Parser_Matrix.i"
 	@echo "... src/Parser_Matrix.s"
+	@echo "... src/Trivial_Solver.o"
+	@echo "... src/Trivial_Solver.i"
+	@echo "... src/Trivial_Solver.s"
 	@echo "... src/WeightedGraph.o"
 	@echo "... src/WeightedGraph.i"
 	@echo "... src/WeightedGraph.s"
 	@echo "... src/graph.o"
 	@echo "... src/graph.i"
 	@echo "... src/graph.s"
+	@echo "... tests/tests.o"
+	@echo "... tests/tests.i"
+	@echo "... tests/tests.s"
 .PHONY : help
 
 

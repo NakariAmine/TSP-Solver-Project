@@ -1,101 +1,10 @@
-#include "AdjacenceMatrixWeightedGraph.hpp"
+#include "Parser.hpp"
 
-#include <filesystem>
 #include <fstream>
-#include <iomanip>
 #include <iostream>
-#include <map>
 #include <sstream>
 #include <stdexcept>
-#include <string>
-#include <utility>
 #include <vector>
-
-std::vector<size_t> trivial_solution(
-    const AdjacenceMatrixWeightedGraph& graph
-)
-{
-    std::vector<size_t> tour;
-
-    for (size_t i = 0; i < graph.size(); ++i) {
-        tour.push_back(i);
-    }
-
-    return tour;
-}
-
-void write_tour(
-    const std::string& filename,
-    const std::string& name,
-    const std::vector<size_t>& tour
-)
-{
-    std::ofstream output(filename);
-
-    if (!output) {
-        throw std::runtime_error("Cannot open output file: " + filename);
-    }
-
-    output << "NAME : " << name << ".tour\n";
-    output << "TYPE : TOUR\n";
-    output << "DIMENSION : " << tour.size() << '\n';
-    output << "TOUR_SECTION\n";
-
-    for (size_t city : tour) {
-        output << city + 1 << '\n';
-    }
-
-    output << "-1\n";
-    output << "EOF\n";
-
-    if (!output) {
-        throw std::runtime_error("Failed to write tour: " + filename);
-    }
-}
-
-namespace fs = std::filesystem;
-
-struct TSPData {
-    size_t dimension;
-    AdjacenceMatrixWeightedGraph graph;
-    std::string type;
-};
-
-std::pair<std::string, TSPData> parse_tsp(
-    const std::string& filename
-);
-
-int main(int argc, char* argv[])
-{
-    if (argc != 2) {
-        std::cerr << "Usage: " << argv[0]
-                  << " <instance_filename>\n";
-        return 1;
-    }
-
-    try {
-        fs::path input_folder = "../TSP-instances/lower_diag";
-        fs::path output_folder = "../TOURS";
-
-        fs::create_directories(output_folder);
-
-        fs::path input_path = input_folder / argv[1];
-        fs::path output_path =
-            output_folder / (input_path.stem().string() + ".tour");
-
-        auto [name, data] = parse_tsp(input_path.string());
-
-        auto tour = trivial_solution(data.graph);
-        write_tour(output_path.string(), name, tour);
-
-        std::cout << "Tour saved to " << output_path << '\n';
-    } catch (const std::exception& error) {
-        std::cerr << error.what() << '\n';
-        return 1;
-    }
-
-    return 0;
-}
 
 std::pair<std::string, TSPData> parse_tsp(
     const std::string& filename
@@ -109,8 +18,6 @@ std::pair<std::string, TSPData> parse_tsp(
 
     std::string name;
     std::string type;
-    std::string weight_type;
-    std::string weight_format;
     size_t dimension = 0;
     std::string line;
 
@@ -120,17 +27,6 @@ std::pair<std::string, TSPData> parse_tsp(
         line_stream >> first_word;
 
         if (first_word == "EDGE_WEIGHT_SECTION") {
-            if (name.empty() || dimension == 0 || type != "TSP") {
-                throw std::runtime_error("Missing or invalid header");
-            }
-
-            if (weight_type != "EXPLICIT" ||
-                weight_format != "LOWER_DIAG_ROW") {
-                throw std::runtime_error(
-                    "Expected EXPLICIT weights in LOWER_DIAG_ROW format"
-                );
-            }
-
             std::vector<std::vector<double>> matrix(
                 dimension,
                 std::vector<double>(dimension, 0.0)
@@ -151,21 +47,6 @@ std::pair<std::string, TSPData> parse_tsp(
                 }
             }
 
-            std::ofstream output(filename + ".matrix.txt");
-
-            if (!output) {
-                throw std::runtime_error(
-                    "Cannot open matrix output file"
-                );
-            }
-
-            for (const auto& row : matrix) {
-                for (double weight : row) {
-                    output << std::setw(6) << weight;
-                }
-                output << '\n';
-            }
-
             return {
                 name,
                 TSPData{
@@ -176,7 +57,7 @@ std::pair<std::string, TSPData> parse_tsp(
             };
         }
 
-        const auto colon = line.find(':');
+        const std::string::size_type colon = line.find(':');
 
         if (colon == std::string::npos) {
             continue;
@@ -194,19 +75,9 @@ std::pair<std::string, TSPData> parse_tsp(
         } else if (key == "TYPE") {
             value_stream >> type;
         } else if (key == "DIMENSION") {
-            const int parsed_dimension = std::stoi(value);
-
-            if (parsed_dimension <= 0) {
-                throw std::runtime_error("Invalid DIMENSION");
-            }
-
-            dimension = static_cast<size_t>(parsed_dimension);
+            value_stream >> dimension;
         } else if (key == "COMMENT") {
             std::cout << value << '\n';
-        } else if (key == "EDGE_WEIGHT_TYPE") {
-            value_stream >> weight_type;
-        } else if (key == "EDGE_WEIGHT_FORMAT") {
-            value_stream >> weight_format;
         }
     }
 

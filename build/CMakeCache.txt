@@ -214,6 +214,15 @@ CMAKE_TAPI:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/tapi
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Value Computed by CMake
+TSPSolver_BINARY_DIR:STATIC=/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build
+
+//Value Computed by CMake
+TSPSolver_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+TSPSolver_SOURCE_DIR:STATIC=/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project
+
+//Value Computed by CMake
 my_project_BINARY_DIR:STATIC=/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build
 
 //Value Computed by CMake

@@ -57,5 +57,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/my_project.dir/DependInfo.cmake"
-  "CMakeFiles/Parser_Matrix.dir/DependInfo.cmake"
+  "CMakeFiles/TSPsolver.dir/DependInfo.cmake"
+  "CMakeFiles/tests.dir/DependInfo.cmake"
   )

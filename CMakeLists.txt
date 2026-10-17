@@ -33,20 +33,20 @@ set(TEST_DIR ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 file(GLOB SOURCES "${SOURCE_DIR}/*.cpp")
 file(GLOB HEADERS "${INCLUDE_DIR}/*.hpp")
 
-# Remove main.cpp from SOURCES
-# We must do so because main.cpp is not part of the library
+# Remove Trivial_Solver.cpp from SOURCES
+# We must do so because Trivial_Solver.cpp contains main() and is not part of the library
 # and should not be compiled into it.
 # Instead, it will be compiled into the main executable.
 # Add here any other source files that should be excluded from the library.
-list(REMOVE_ITEM SOURCES "${SOURCE_DIR}/Parser_Matrix.cpp")
+list(REMOVE_ITEM SOURCES "${SOURCE_DIR}/Trivial_Solver.cpp")
 
 # --- Including libraries ---
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDE_DIR})
 
 # --- Main executable ---
-add_executable(Parser_Matrix ${SOURCE_DIR}/Parser_Matrix.cpp)
-target_link_libraries(Parser_Matrix PRIVATE ${PROJECT_NAME})
+add_executable(TSPsolver ${SOURCE_DIR}/Trivial_Solver.cpp)
+target_link_libraries(TSPsolver PRIVATE ${PROJECT_NAME})
 
 
 # --- External dependencies ---
@@ -55,21 +55,14 @@ target_link_libraries(Parser_Matrix PRIVATE ${PROJECT_NAME})
 # target_link_libraries(${PROJECT_NAME} PRIVATE Boost::boost)
 
 # --- Tests (optionnal) ---
-if(BUILD_TESTS)
-  include(FetchContent)
-  FetchContent_Declare(
-    googletest
-    GIT_REPOSITORY https://github.com/google/googletest.git
-    GIT_TAG        v1.17.0
-  )
-  FetchContent_MakeAvailable(googletest)
-
-  enable_testing()
-  file(GLOB TEST_SOURCES "${TEST_DIR}/*.cpp")
-  add_executable(tests ${TEST_SOURCES})
-  target_link_libraries(tests PRIVATE ${PROJECT_NAME} GTest::gtest_main)
-  target_include_directories(tests PRIVATE ${INCLUDE_DIR})
-  add_test(NAME tests COMMAND tests)
-endif()
-
-
+# The old placeholder test was removed; enable this when tests are added.
+# Simple tests are now built by default, without external libraries.
+enable_testing()
+file(GLOB TEST_SOURCES "${TEST_DIR}/*.cpp")
+add_executable(tests ${TEST_SOURCES})
+target_link_libraries(tests PRIVATE ${PROJECT_NAME})
+target_include_directories(tests PRIVATE ${INCLUDE_DIR})
+target_compile_definitions(tests PRIVATE
+  TSP_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}"
+)
+add_test(NAME tests COMMAND tests)

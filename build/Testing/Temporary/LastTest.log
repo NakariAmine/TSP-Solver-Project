@@ -1,0 +1,24 @@
+Start testing: Oct 17 18:21 CEST
+----------------------------------------------------------
+1/1 Testing: tests
+1/1 Test: tests
+Command: "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/tests"
+Directory: /Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build
+"tests" start time: Oct 17 18:21 CEST
+Output:
+----------------------------------------------------------
+ 21-city problem (Groetschel)
+ 24-city problem (Groetschel)
+ 42 cities (Dantzig)
+ 17-city problem (Groetschel)
+ 48-city problem (Groetschel)
+Passed: 15 instances, spaced EOF, blank lines, sorted IDs and output errors.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"tests" end time: Oct 17 18:21 CEST
+"tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 17 18:21 CEST
