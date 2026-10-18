@@ -79,7 +79,7 @@ The components interact in the following manner:
 
 **Matrix**: `main()` in `Trivial_Solver.cpp` detects the format, and `parse_tsp()` returns an instance name and graph data, then `trivial_solution()` creates the tour, while `write_tour()` saves it.
 
-**Coordinates**: As with the matrix, `main()` detects the format, `parse_coordinates()` returns the IDs and coordinates, then the solver sorts the IDs and `write_coordinate_tour()` saves them.
+**Coordinates**: As with the matrix, `main()` detects the format, `parse_coordinates()` returns the IDs and coordinates, `write_coordinate_tour()` then saves the IDs in the order they were read.
 
 All these checks are done using the contents of the file rather than the folder names.
 
@@ -88,38 +88,39 @@ All these checks are done using the contents of the file rather than the folder 
 
 ### 4.1 Trivial Algorithm
 
-- Explain ascending city-ID order using a small example.
-- Explain the implicit return to the first city.
-- State what makes the tour valid and why it need not be shortest.
-- Explain why weights do not influence this method's ordering.
-- If discussing complexity, separate linear matrix-tour creation, coordinate-ID
-  sorting in O(n log n), and matrix parsing/storage in O(n²).
+The trivial algorithm visits cities in ascending ID order. With four cities, this gives 1 → 2 → 3 → 4 → 1. The return to city 1 is understood, so it is not repeated in the output list. The tour is valid because every city is visited once before returning to the start, but it is not necessarily the shortest. Distances do not affect the order because the method only uses city IDs.
+
 
 ### 4.2 Building and Running the Program
 
-Include commands you have verified:
+From the project root, we build the solver and tests with:
 
 ```bash
 bash build-TSPsolver.sh
+```
+
+This creates `build/TSPsolver` and `build/tests`. To run the tests:
+
+```bash
 ./build/tests
+```
+
+The solver takes the input file path and output file path as its two arguments. For example:
+
+```bash
 ./build/TSPsolver TSP-instances/coord/berlin52.tsp berlin52.tour
 ./build/TSPsolver TSP-instances/lower_diag/gr17.tsp gr17.tour -m trivial
 ```
 
-- State that commands run from the project root.
-- Identify dependencies: Bash, CMake 3.14 or newer, and a C++20 compiler.
-- Explain that compilation produces `build/TSPsolver` and `build/tests`.
-- Explain both mandatory arguments and the optional method argument.
-- State that trivial is the default and other methods are not yet implemented.
-- Explain that relative paths are interpreted from the current working directory.
+The trivial method is considered the default, so `-m trivial` is optional. No other solving method is implemented as of yet. 
 
 ### 4.3 Solution File Format
 
-- Explain `NAME`, `TYPE : TOUR`, `DIMENSION`, and `TOUR_SECTION`.
-- Describe one occurrence per city, followed by `-1` and `EOF`.
-- Explain why the first city is not repeated in the stored list.
-- State that output goes to the exact supplied path and its parent folder must exist.
-  There is no automatic redirection into a tour directory.
+The solution file is formatted as per the requirements:
+
+The output starts with the tour name (`NAME`), `TYPE : TOUR`, and the number of cities (`DIMENSION`). After `TOUR_SECTION`, each city ID is written on its own line, followed by `-1` and `EOF`. The starting city is not repeated.
+
+The file is saved exactly where the output argument specifies. TThe parent folder must already exist if the output path includes a folder.
 
 ## 5. Validation and Difficulties
 

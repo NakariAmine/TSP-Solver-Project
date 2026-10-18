@@ -1,7 +1,6 @@
 #include "Parser.hpp"
 
 #include <filesystem>
-#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -111,7 +110,6 @@ int main(int argc, char* argv[])
 
         if (section == "NODE_COORD_SECTION") {
             CoordinateData data = parse_coordinates(argv[1]);
-            std::sort(data.indexs.begin(), data.indexs.end());
             write_coordinate_tour(std::filesystem::path(argv[1]).stem().string() + ".tour",
                                   output_path.string(), data.indexs);
         } else if (section == "EDGE_WEIGHT_SECTION") {
