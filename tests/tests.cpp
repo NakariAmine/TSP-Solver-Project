@@ -1,3 +1,4 @@
+// Partial ChatGPT/Codex assistance, 2026-10-16 (specifically for how tests should be formatted and implemented).
 #include "Parser.hpp"
 #include <iostream>
 

@@ -88,8 +88,7 @@ All these checks are done using the contents of the file rather than the folder 
 
 ### 4.1 Trivial Algorithm
 
-The trivial algorithm visits cities in ascending ID order. With four cities, this gives 1 → 2 → 3 → 4 → 1. The return to city 1 is understood, so it is not repeated in the output list. The tour is valid because every city is visited once before returning to the start, but it is not necessarily the shortest. Distances do not affect the order because the method only uses city IDs.
-
+The trivial algorithm visits cities in ascending ID order. With four cities, this gives 1 → 2 → 3 → 4 → 1. The return to city 1 means returning to the start. The tour is valid because every city is visited once before returning to the start, but it is not necessarily the shortest. Distances do not affect the order because the method only uses city IDs. For coordinate inputs, we assume cities are listed in ascending ID order.
 
 ### 4.2 Building and Running the Program
 
@@ -143,20 +142,24 @@ We also used C++ documentation throughout the project, especially for reading fi
 
 ### 7.2 Use of AI Tools
 
-- Identify the tool and actual assistance: explanations, debugging, restructuring,
-  integration, generated tests, and generated or modified implementation.
-- Identify affected files or functions. Distinguish your work, your teammate's work,
-  and AI contributions.
-- Explain how suggestions were inspected, tested, changed, accepted, or rejected.
-- Reflect on learning and on suggestions you initially did not understand.
-- Check that code comments identify the tool and date where required.
-- Write this disclosure yourself; the assignment prohibits AI generation of the report.
+We used ChatGPT to help understand the problem and clarify parts of the requirements. We also used it sometimes when debugging, for example when dealing with index-out-of-range errors or looking for a suitable method to use. It helped explain C++ functions that made some tasks easier, such as checking whether a character was found using `std::string::npos`. ChatGPT/Codex also helped write the test file.
+
+These contributions are marked in the code with the following comments:
+
+In `Parser_Matrix.cpp`:
+
+```cpp
+// ChatGPT assistance, 2026-09-30: check whether ':' was not found.
+```
+
+In `tests/tests.cpp`:
+
+```cpp
+// Partial ChatGPT/Codex assistance, 2026-10-16...
+```
 
 AI (specifically ChatGPT) was used to suggest an outline for the report and proofread some paragraphs, mainly to correct grammar and improve sentence structure.
 
 ### 7.3 DALIA Self-Assessment
 
-- Assess the actual involvement using the course's definitions.
-- Justify it with concrete activities rather than the number of prompts.
-- Describe mixed contributions accurately and ask the teacher if classification is unclear.
-- Do not choose a level solely because it is the permitted maximum.
+We developed the matrix and coordinate parsers and reused the graph classes from the previous lab to store the reconstructed matrix and implemented the trivial solution. Nevertheless, based on the activities described in Section 7.2, we assess that assistance as D2–D3: we used AI to support our understanding and help with debugging purposes. Additionally, it aided in the testing and guided us on how to implement testing for certain functionalities. 

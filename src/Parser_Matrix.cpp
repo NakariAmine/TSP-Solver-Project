@@ -59,6 +59,7 @@ std::pair<std::string, TSPData> parse_tsp(
 
         const std::string::size_type colon = line.find(':');
 
+        // ChatGPT assistance, 2026-09-30: check whether ':' was not found.
         if (colon == std::string::npos) {
             continue;
         }
