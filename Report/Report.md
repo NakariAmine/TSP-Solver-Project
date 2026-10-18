@@ -5,113 +5,84 @@
 
 ## 1. Introduction
 
-**Purpose:** explain what the project is and what this version does.
+The goal of this project is to implement a program that solves a restricted version of the Travelling Salesman Problem: metric TSP on complete graphs. Solving this problem requires finding the shortest tour that visits every city exactly once and returns to the starting city. However, at this stage, we are only implementing the trivial method, which establishes an input-to-output system that lists cities in ascending order of their indices, without optimizing the tour length. The input can be either the lower triangle of a weight matrix, including its diagonal, or a list of coordinates. The Held–Karp algorithm will be implemented at a later stage to find an optimal tour.
 
-- Define the travelling salesman problem in your own words: cities, weighted
-  connections, visiting every city once, and returning to the starting city.
-- Distinguish finding a shortest tour from the current milestone, which constructs
-  a trivial tour without optimizing its length.
-- Introduce the two input representations: coordinates and explicit lower-diagonal weights.
-- Name the team members and explain the actual division of work: matrix parser,
-  coordinate parser, integration, and testing.
-- Briefly identify the deliverables: sources, build script, solver, and basic tests.
-
-**Suggested length:** one or two short paragraphs. Keep implementation details for Section 3.
+This version was implemented by Amine Nakari and Mohammed Mehdi Berrahou. This submission contains the source code for the trivial solution along with this report.
 
 ## 2. Chronological Account of the Work
 
-**Purpose:** describe how the project developed, rather than only its final features.
-For each stage, explain the starting situation, action, difficulty, result, and lesson.
-Use actual dates where known; otherwise describe stages in their real order.
+| Date | Stage | Summary |
+|---|---|---|
+| September 21 | Project setup | Set up the project and reused graph classes from the previous lab. |
+| September 30 | Matrix parser | Implemented lower-diagonal parsing and the trivial method (outputting to a file). |
+| September 30 | Coordinate parser | Implemented the coordinate parser and its trivial method (outputting to a file) |
+| October 14 | Cleanup | Cleaned up the code and adjusted file handling. |
+| October 17 | Integration | Combined both parsers into one program and organized the source files. |
+| October 17 | Testing and documentation | Added basic tests, corrected issues, and documented program usage. |
+
 
 ### 2.1 Understanding the Requirements and Planning
 
-- Which requirements did you identify first? How did they influence your plan?
-- How did you understand the expected arguments, file formats, and trivial method?
-- Why did you divide the work between the two parsers?
-- What did each member already know, and what needed learning?
-- Identify tools actually used: editor, compiler, CMake, Bash, Git if used, and AI.
-  Explain each tool's role rather than simply listing names.
+We started by reading the project instructions and looking through the provided files to understand their different sections and how to run the program. The coordinate format seemed easier for this first stage: we only had to read the cities and their coordinates, without worrying about how distances were calculated. The lower-diagonal format was a bit more challenging because we had to rebuild the full matrix from its lower-diagonal representation.
+
+We split the work as follows: Amine took care of the lower-diagonal matrix parser, and Mehdi took care of the coordinate parser. 
 
 ### 2.2 Developing the Matrix Parser
 
-- Describe the initial instance you inspected and how you understood its header and data.
-- Explain the implementation stages: metadata, dimension, weights, symmetric matrix,
-  and graph construction.
-- Discuss difficulties you actually encountered with indexing or reading weights
-  across lines. Explain how you checked the results.
-- If matrix text exports were used during development, explain their temporary
-  purpose and why they were removed.
-- Distinguish your original implementation from subsequent assistance and modifications.
+When it came to developing the matrix parser, we first started by looking through the lower-diagonal instance files to understand how the weights were listed. We read the instance name, type, and number of cities before reaching the most important part: `EDGE_WEIGHT_SECTION`. The number of cities was used to create an empty matrix. We then rebuilt the whole matrix by reading one number for the first row, two for the second, and so on, then copying each value to its matching position in the upper half (since the matrix is symmetric). The `AdjacenceMatrixWeightedGraph` class from the previous lab was reused to store the completed matrix. The matrix was also saved in a `.matrix.txt` file for inspection; these exports were later removed. Initially, reconstructing the matrix and solving were done within the same file, but the solving and output code was later moved to `Trivial_Solver.cpp` when refactoring for cleaner code.
 
 ### 2.3 Developing the Coordinate Parser
 
-- Ask your teammate to describe their actual process and design decisions.
-- Describe the original class and its stages: storing lines, extracting metadata,
-  locating the coordinate section, and reading IDs/x/y.
-- Explain the integration as a function while retaining those stages.
-- Describe initial checks, difficulties, and lessons learned by your teammate.
+We initially implemented the coordinate parser as a class called `parser`, with its declaration in `parser.hpp`, its methods in `parser.cpp`, and a separate `main.cpp` to run it. The class first read and stored the file's lines, then extracted the metadata and located `NODE_COORD_SECTION`. From there, it read each city's ID and x/y coordinates until reaching `EOF`. It also included a method to write the trivial solution, and the initial program used `berlin52.tsp` as its input. During integration, the class methods were combined into a function in `Coord_Parser.cpp`, keeping the same parsing steps. As with the matrix parser, the tour-writing code was later moved to `Trivial_Solver.cpp`. An extra condition was also added to handle the space before `EOF` in `ulysses16.tsp`.
 
 ### 2.4 Integrating and Organizing the Program
 
-- Explain the starting situation: separate parsers and separate entry points.
-- Describe moving source files out of the instance directory.
-- Explain automatic input-format detection and the move to one executable.
-- Describe why you settled on three main implementation files and a shared header.
-- Mention revisions when they explain a decision or lesson, without recounting every edit.
-- Describe the tools and AI assistance actually used for integration and restructuring.
+
+At first, the two parsers were two separate programs. However, when refactoring, the parsers were combined into one program that detected the input format from the section marker inside the file. We ended up with three main `.cpp` files: `Trivial_Solver.cpp`, `Coord_Parser.cpp`, and `Parser_Matrix.cpp`. Additionally, instead of writing from each of the parsers, both writing functions were moved to `Trivial_Solver.cpp`.
+
 
 ### 2.5 Testing and Corrections
 
-- Describe progression from trying individual instances to basic automated tests.
-- Explain how problems were found and how fixes were checked.
-- Mention the Ulysses EOF issue, ID ordering, and output paths where relevant to your process.
-- Reflect on why success on one instance does not establish correctness on every instance.
+At first, we tried the program on lower-diagonal and coordinate instances manually and checked that the resulting tour output was correct (ascending ID order, followed by `-1` and `EOF`). One issue that arose was that the `ulysses16.tsp` file had a space before `EOF`, so a condition was added so the file could be parsed correctly. We also added two automated parser tests for `gr17` and `berlin52`. This validation process was necessary to have correct output, as incorrect output can be generated if the parsing or output handling is wrong. 
+
 
 ## 3. Code Structure and Design Choices
 
-**Purpose:** explain the final organization and its reasons, without repeating the chronology.
-
 ### 3.1 Organization of the Source Files
 
-Explain these responsibilities in paragraphs or a table:
+We organized the files according to what each part of the program does:
 
-- `Parser_Matrix.cpp`: reads lower-diagonal weights and returns the instance name and graph data.
-- `Coord_Parser.cpp`: returns coordinate metadata, city IDs, and x/y values.
-- `Trivial_Solver.cpp`: handles arguments, detects the input format, generates the
-  trivial tour, and writes the solution.
-- `Parser.hpp`: declares parser functions and the shared data structures. Explain
-  why callers need declarations when implementations are in separate files.
-- Graph classes: distinguish the general graph interface, weighted interface, and
-  concrete adjacency-matrix implementation.
-- `tests/tests.cpp`: contains the two parser checks.
-- `CMakeLists.txt` and `build-TSPsolver.sh`: configure compilation and provide the build command.
-- `TSP-instances/`: holds datasets, rather than implementation files.
+- `Parser_Matrix.cpp`: reads the lower-diagonal values and rebuilds the matrix, then returns the name and graph data.
+- `Coord_Parser.cpp`: reads the information at the start of the file, followed by the city IDs and their coordinates.
+- `Trivial_Solver.cpp`: contains `main()`. It reads the arguments, chooses the right parser, creates the trivial tour, and saves it to the output file.
+- `Parser.hpp`: declares the two parser functions so the solver can call them. It also defines the structures used to pass their results back to the solver.
+- Graph classes: these come from the previous lab. `Graph` describes the basic graph operations, `WeightedGraph` adds operations involving weights, and `AdjacenceMatrixWeightedGraph` stores our matrix.
+- `tests/tests.cpp`: checks a few values read from `gr17` and `berlin52` to see whether both parsers work as expected.
+- `CMakeLists.txt`: lists what needs to be compiled to build the program and its tests.
+- `build-TSPsolver.sh`: lets us build everything with one command.
+- `TSP-instances/`: keeps the input files together, separate from the source code.
 
-Explain the separation of parsing from solving and the choice of one executable.
-Do not imply that DFS or path-weight calculation is used by the trivial solver.
+We wanted to avoid keeping everything in one file. Each parser takes care of reading its own format, while the solver takes care of creating and writing the tour. Keeping these parts separate makes the code easier to follow and lets us work on one part without mixing it with the rest. Later, we can add new solving methods and keep using the same parsers. There is still only one executable to run, and it chooses the parser from the contents of the input file.
 
 ### 3.2 Data Representations
 
-- Describe the fields of `TSPData` and `CoordinateData` and their purposes.
-- Explain why symmetric distances need only a lower triangle in the input.
-- Consider a three-city example showing how each weight fills both `matrix[i][j]`
-  and `matrix[j][i]`.
-- Distinguish reconstruction in memory from creating a matrix file on disk.
-- Explain why coordinates are retained even though trivial ordering only needs IDs.
-- Discuss retaining the existing representations versus immediately introducing a unified graph model.
+
+**Matrix Instances:** We used the `AdjacenceMatrixWeightedGraph` class to represent the full matrix. Each position `[i][j]` contains the distance between cities i and j. The matrix is rebuilt in memory, without creating another file. Once the matrix was reconstructed as explained previously, we used the `TSPData` structure to hold that graph, the number of cities, and the type of problem, with the parser returning the instance name as well.
+
+**Coordinate Instances:** `CoordinateData` stores the metadata in a map and uses the three vectors `indexs`, `xs` and `ys`, with `indexs[i]`, `xs[i]`, and `ys[i]` holding the ID and coordinates of the city at position i. However, our coordinate parser does not calculate distances yet. The trivial method only requires the IDs of the cities.
+
+We kept both representations because they already provide what the trivial method needs.
 
 ### 3.3 Interaction Between Components
 
-Trace both paths in your own words:
+The components interact in the following manner:
 
-- Matrix: arguments → detect `EDGE_WEIGHT_SECTION` → parse weights → construct
-  graph → generate indices → convert to output IDs → write tour.
-- Coordinates: arguments → detect `NODE_COORD_SECTION` → read IDs/x/y → sort
-  tour IDs → write tour.
+**Matrix**: `main()` in `Trivial_Solver.cpp` detects the format, and `parse_tsp()` returns an instance name and graph data, then `trivial_solution()` creates the tour, while `write_tour()` saves it.
 
-Explain that detection uses contents rather than folder names. Explain zero-based
-matrix indices versus original IDs in coordinate inputs.
+**Coordinates**: As with the matrix, `main()` detects the format, `parse_coordinates()` returns the IDs and coordinates, then the solver sorts the IDs and `write_coordinate_tour()` saves them.
+
+All these checks are done using the contents of the file rather than the folder names.
+
 
 ## 4. Trivial Method and Program Usage
 
