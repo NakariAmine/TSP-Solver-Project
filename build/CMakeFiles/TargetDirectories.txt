@@ -1,6 +1,0 @@
-/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles/my_project.dir
-/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles/TSPsolver.dir
-/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles/tests.dir
-/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles/test.dir
-/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles/edit_cache.dir
-/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles/rebuild_cache.dir
