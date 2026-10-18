@@ -120,66 +120,26 @@ The solution file is formatted as per the requirements:
 
 The output starts with the tour name (`NAME`), `TYPE : TOUR`, and the number of cities (`DIMENSION`). After `TOUR_SECTION`, each city ID is written on its own line, followed by `-1` and `EOF`. The starting city is not repeated.
 
-The file is saved exactly where the output argument specifies. TThe parent folder must already exist if the output path includes a folder.
+The file is saved exactly where the output argument specifies. The parent folder must already exist if the output path includes a folder.
 
 ## 5. Validation and Difficulties
 
-### 5.1 Automated Tests
+We added two simple tests using values from the input files. For `gr17`, we check that the graph has 17 cities and that the distance between the first two cities is 633 in both directions. For `berlin52`, we check the number of IDs and coordinates, the first and last IDs, and the first city's position, (565, 575). These tests only read the files and check the data in memory; they do not create output files.
 
-Describe the two tests delivered in `tests/tests.cpp`:
-
-- `gr17`: 17 vertices and weight 633 between the first two vertices in both directions.
-- `berlin52`: 52 IDs and coordinate pairs, first/last IDs, and first position (565, 575).
-
-Explain where expected values come from. Describe the passing message and the
-failure exit status. These tests read existing inputs without writing files.
-They check selected parser results, not all weights or the complete solver/output flow.
-
-### 5.2 Additional Checks
-
-- Describe manual or separate automated checks actually performed or reviewed.
-- Distinguish those checks from the two repository tests.
-- For each, identify the input, command, expected result, and observed result.
-- Useful checks include city count, uniqueness, order, output path, default method,
-  and explicit `-m trivial`.
-- If stating all supplied instances passed, describe the checking method and
-  whether the check was performed by you or through AI assistance.
-
-### 5.3 Problems Encountered and Solutions
-
-For each problem, explain its symptom, cause, correction, and verification:
-
-- Ulysses: the leading space before `EOF` breaks an exact comparison. Explain the
-  additional condition and its limited scope, rather than claiming general whitespace handling.
-- City ordering: coordinate file order need not match ascending ID order.
-- Output paths: a created folder is not necessarily the requested output location;
-  explain why the second argument determines the path.
-- Describe other integration or compilation problems only if actually encountered.
-
-### 5.4 Current Limitations
-
-- Optimization algorithms are not implemented yet.
-- The two tests provide limited coverage.
-- The coordinate parser assumes expected formatting apart from the specific EOF fix.
-- Coordinate distances are not calculated by the current trivial-method flow.
-- Check the actual implementation before claiming any additional limitation or capability.
+The tests check a few parser results, rather than every value or the full process of generating and writing a tour. The program currently supports only the trivial method, and coordinate distances are not calculated yet because this method does not need them.
 
 ## 6. Reflections and Next Steps
 
-- What did each member learn about C++, parsing, graphs, building, or collaboration?
-- Which decisions helped integration, and which caused extra work?
-- What can you now explain or implement independently?
-- Identify specific improvements rather than simply saying the code should be cleaner.
-- Outline Held–Karp with tour reconstruction, another algorithm discussed with the
-  teacher, and later runtime/quality/scalability evaluation.
-- Clearly distinguish plans from completed features.
+In this project, we learned how to use classes to represent graph problems and how to parse input files and generate output files. At first, we built everything independently and went for different approaches (I used functions, while Mehdi used classes), but in the end we refactored everything while keeping the main parsing logic the same. The refactoring separated the tasks properly and made the code easier to debug. What remains is to implement the Held–Karp algorithm, another solving method, and the performance evaluation.
+
 
 ## 7. References and AI-Use Disclosure
 
 ### 7.1 References
 
-- List the assignment and resources actually consulted, with title, location, and purpose.
-- Identify supplied datasets and the instance generator as provided material.
+We used the TSPLIB 95 documentation to understand the instance files and the tour format.
+
+We also used C++ documentation throughout the project, especially for reading files and working with strings. Examples include `find()`, `substr()`, and `npos` for reading the headers, string streams for extracting values from a line, and `std::pair` for returning the instance name and data together.
 
 ### 7.2 Use of AI Tools
 
@@ -191,6 +151,8 @@ For each problem, explain its symptom, cause, correction, and verification:
 - Reflect on learning and on suggestions you initially did not understand.
 - Check that code comments identify the tool and date where required.
 - Write this disclosure yourself; the assignment prohibits AI generation of the report.
+
+AI (specifically ChatGPT) was used to suggest an outline for the report and proofread some paragraphs, mainly to correct grammar and improve sentence structure.
 
 ### 7.3 DALIA Self-Assessment
 
