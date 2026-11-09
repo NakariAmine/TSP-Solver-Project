@@ -26,6 +26,7 @@ public:
         ElementsIterator operator++(int);
         bool operator==(const ElementsIterator& other) const;
         bool operator!=(const ElementsIterator& other) const;
+        
 
     private:
         const Subset* subset_ = nullptr;
@@ -48,6 +49,9 @@ public:
     // Compatibility with the original example program.
     ElementsIterator my_subset_begin() const { return begin(); }
     ElementsIterator my_subset_end() const { return end(); }
+
+    unsigned long long mask() const { return bit_rep; }
+
 
 private:
     unsigned long long bit_rep = 0;
