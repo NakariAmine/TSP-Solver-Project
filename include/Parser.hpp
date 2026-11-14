@@ -18,6 +18,7 @@ struct CoordinateData {
     std::vector<double> ys;
     std::vector<double> xs;
     std::vector<int> indexs;
+    std::vector<std::vector<double>> distances;
 };
 
 CoordinateData parse_coordinates(const std::string& s);

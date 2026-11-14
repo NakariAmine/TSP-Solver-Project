@@ -33,20 +33,23 @@ set(TEST_DIR ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 file(GLOB SOURCES "${SOURCE_DIR}/*.cpp")
 file(GLOB HEADERS "${INCLUDE_DIR}/*.hpp")
 
-# Remove Trivial_Solver.cpp from SOURCES
-# We must do so because Trivial_Solver.cpp contains main() and is not part of the library
+# Remove main.cpp from SOURCES
+# We must do so because main.cpp contains main() and is not part of the library
 # and should not be compiled into it.
 # Instead, it will be compiled into the main executable.
 # Add here any other source files that should be excluded from the library.
-list(REMOVE_ITEM SOURCES "${SOURCE_DIR}/Trivial_Solver.cpp")
+list(REMOVE_ITEM SOURCES "${SOURCE_DIR}/main.cpp")
 
 # --- Including libraries ---
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDE_DIR})
 
 # --- Main executable ---
-add_executable(TSPsolver ${SOURCE_DIR}/Trivial_Solver.cpp)
+add_executable(TSPsolver ${SOURCE_DIR}/main.cpp)
 target_link_libraries(TSPsolver PRIVATE ${PROJECT_NAME})
+
+add_executable(benchmark ${CMAKE_CURRENT_SOURCE_DIR}/benchmarks/benchmark.cpp)
+target_link_libraries(benchmark PRIVATE ${PROJECT_NAME})
 
 
 # --- External dependencies ---

@@ -1,4 +1,5 @@
 #include "Parser.hpp"
+#include "Held_Karp.hpp"
 
 #include <filesystem>
 #include <fstream>
@@ -81,12 +82,13 @@ int main(int argc, char* argv[])
 {
     if (argc != 3 && argc != 5) {
         std::cerr << "Usage: " << argv[0]
-                  << " <instance_path> <output_path> [-m trivial]\n";
+                  << " <instance_path> <output_path> [-m trivial|held-karp]\n";
         return 1;
     }
+    const std::string method = argc == 5 ? argv[4] : "trivial";
     if (argc == 5 && (std::string(argv[3]) != "-m" ||
-                      std::string(argv[4]) != "trivial")) {
-        std::cerr << "Only the trivial method is available for now.\n"; 
+                     (method != "trivial" && method != "held-karp"))) {
+        std::cerr << "Supported methods: trivial, held-karp.\n";
         return 1;
     }
 
@@ -110,13 +112,29 @@ int main(int argc, char* argv[])
 
         if (section == "NODE_COORD_SECTION") {
             CoordinateData data = parse_coordinates(argv[1]);
+            std::vector<int> tour_ids = data.indexs;
+
+            // graph, then map its zero-based positions to original city IDs.
+            if (method == "held-karp") {
+                AdjacenceMatrixWeightedGraph graph(data.distances);
+                std::vector<std::size_t> tour = held_karp(graph);
+                tour_ids.clear();
+                for (std::size_t city : tour) {
+                    tour_ids.push_back(data.indexs[city]);
+                }
+            }
             write_coordinate_tour(std::filesystem::path(argv[1]).stem().string() + ".tour",
-                                  output_path.string(), data.indexs);
+                                  output_path.string(), tour_ids);
         } else if (section == "EDGE_WEIGHT_SECTION") {
             std::pair<std::string, TSPData> result = parse_tsp(argv[1]);
             std::string name = result.first;
             TSPData data = result.second;
-            std::vector<size_t> tour = trivial_solution(data.graph);
+            std::vector<size_t> tour;
+            if (method == "held-karp") {
+                tour = held_karp(data.graph);
+            } else {
+                tour = trivial_solution(data.graph);
+            }
             write_tour(output_path.string(), name, tour);
         } else {
             throw std::runtime_error("Missing supported data section");
