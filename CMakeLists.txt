@@ -48,8 +48,10 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDE_DIR})
 add_executable(TSPsolver ${SOURCE_DIR}/main.cpp)
 target_link_libraries(TSPsolver PRIVATE ${PROJECT_NAME})
 
-add_executable(benchmark ${CMAKE_CURRENT_SOURCE_DIR}/benchmarks/benchmark.cpp)
-target_link_libraries(benchmark PRIVATE ${PROJECT_NAME})
+# ChatGPT/Codex assistance, 2026-11-15: build the comparison runner.
+add_executable(compare_algorithms ${CMAKE_CURRENT_SOURCE_DIR}/compare_algorithms.cpp)
+target_link_libraries(compare_algorithms PRIVATE ${PROJECT_NAME})
+
 
 
 # --- External dependencies ---

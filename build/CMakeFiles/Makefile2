@@ -65,12 +65,14 @@ CMAKE_BINARY_DIR = "/Users/aminenakari/Downloads/M1 AI/Programming/Project/imple
 # The main recursive "all" target.
 all: CMakeFiles/my_project.dir/all
 all: CMakeFiles/TSPsolver.dir/all
+all: CMakeFiles/compare_algorithms.dir/all
 all: CMakeFiles/tests.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/my_project.dir/codegen
 codegen: CMakeFiles/TSPsolver.dir/codegen
+codegen: CMakeFiles/compare_algorithms.dir/codegen
 codegen: CMakeFiles/tests.dir/codegen
 .PHONY : codegen
 
@@ -81,6 +83,7 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/my_project.dir/clean
 clean: CMakeFiles/TSPsolver.dir/clean
+clean: CMakeFiles/compare_algorithms.dir/clean
 clean: CMakeFiles/tests.dir/clean
 .PHONY : clean
 
@@ -91,12 +94,12 @@ clean: CMakeFiles/tests.dir/clean
 CMakeFiles/my_project.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=3,4,5,6,7,8,9,10 "Built target my_project"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=5,6,7,8,9,10,11,12,13 "Built target my_project"
 .PHONY : CMakeFiles/my_project.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/my_project.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" 8
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" 9
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/my_project.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" 0
 .PHONY : CMakeFiles/my_project.dir/rule
@@ -108,7 +111,7 @@ my_project: CMakeFiles/my_project.dir/rule
 # codegen rule for target.
 CMakeFiles/my_project.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=3,4,5,6,7,8,9,10 "Finished codegen for target my_project"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=5,6,7,8,9,10,11,12,13 "Finished codegen for target my_project"
 .PHONY : CMakeFiles/my_project.dir/codegen
 
 # clean rule for target.
@@ -128,7 +131,7 @@ CMakeFiles/TSPsolver.dir/all: CMakeFiles/my_project.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TSPsolver.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" 10
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/TSPsolver.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" 0
 .PHONY : CMakeFiles/TSPsolver.dir/rule
@@ -149,18 +152,50 @@ CMakeFiles/TSPsolver.dir/clean:
 .PHONY : CMakeFiles/TSPsolver.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/compare_algorithms.dir
+
+# All Build rule for target.
+CMakeFiles/compare_algorithms.dir/all: CMakeFiles/my_project.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/compare_algorithms.dir/build.make CMakeFiles/compare_algorithms.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/compare_algorithms.dir/build.make CMakeFiles/compare_algorithms.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=3,4 "Built target compare_algorithms"
+.PHONY : CMakeFiles/compare_algorithms.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/compare_algorithms.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" 11
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/compare_algorithms.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" 0
+.PHONY : CMakeFiles/compare_algorithms.dir/rule
+
+# Convenience name for target.
+compare_algorithms: CMakeFiles/compare_algorithms.dir/rule
+.PHONY : compare_algorithms
+
+# codegen rule for target.
+CMakeFiles/compare_algorithms.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/compare_algorithms.dir/build.make CMakeFiles/compare_algorithms.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=3,4 "Finished codegen for target compare_algorithms"
+.PHONY : CMakeFiles/compare_algorithms.dir/codegen
+
+# clean rule for target.
+CMakeFiles/compare_algorithms.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/compare_algorithms.dir/build.make CMakeFiles/compare_algorithms.dir/clean
+.PHONY : CMakeFiles/compare_algorithms.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/tests.dir
 
 # All Build rule for target.
 CMakeFiles/tests.dir/all: CMakeFiles/my_project.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=11,12 "Built target tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=14,15 "Built target tests"
 .PHONY : CMakeFiles/tests.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" 10
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" 0
 .PHONY : CMakeFiles/tests.dir/rule
@@ -172,7 +207,7 @@ tests: CMakeFiles/tests.dir/rule
 # codegen rule for target.
 CMakeFiles/tests.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=11,12 "Finished codegen for target tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/aminenakari/Downloads/M1 AI/Programming/Project/implement/TSP-Solver-Project/build/CMakeFiles" --progress-num=14,15 "Finished codegen for target tests"
 .PHONY : CMakeFiles/tests.dir/codegen
 
 # clean rule for target.

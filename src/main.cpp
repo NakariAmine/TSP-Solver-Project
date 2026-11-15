@@ -1,5 +1,6 @@
 #include "Parser.hpp"
 #include "Held_Karp.hpp"
+#include "ACO_Solver.hpp"
 
 #include <filesystem>
 #include <fstream>
@@ -82,13 +83,13 @@ int main(int argc, char* argv[])
 {
     if (argc != 3 && argc != 5) {
         std::cerr << "Usage: " << argv[0]
-                  << " <instance_path> <output_path> [-m trivial|held-karp]\n";
+                  << " <instance_path> <output_path> [-m trivial|held-karp|aco]\n";
         return 1;
     }
     const std::string method = argc == 5 ? argv[4] : "trivial";
     if (argc == 5 && (std::string(argv[3]) != "-m" ||
-                     (method != "trivial" && method != "held-karp"))) {
-        std::cerr << "Supported methods: trivial, held-karp.\n";
+                     (method != "trivial" && method != "held-karp" && method != "aco"))) {
+        std::cerr << "Supported methods: trivial, held-karp, aco.\n";
         return 1;
     }
 
@@ -114,10 +115,15 @@ int main(int argc, char* argv[])
             CoordinateData data = parse_coordinates(argv[1]);
             std::vector<int> tour_ids = data.indexs;
 
-            // graph, then map its zero-based positions to original city IDs.
-            if (method == "held-karp") {
+            // adaptive ACO solver, then map graph positions to original city IDs.
+            if (method != "trivial") {
                 AdjacenceMatrixWeightedGraph graph(data.distances);
-                std::vector<std::size_t> tour = held_karp(graph);
+                std::vector<std::size_t> tour;
+                if (method == "held-karp") {
+                    tour = held_karp(graph);
+                } else {
+                    tour = aco_solve(graph).tour;
+                }
                 tour_ids.clear();
                 for (std::size_t city : tour) {
                     tour_ids.push_back(data.indexs[city]);
@@ -132,6 +138,8 @@ int main(int argc, char* argv[])
             std::vector<size_t> tour;
             if (method == "held-karp") {
                 tour = held_karp(data.graph);
+            } else if (method == "aco") {
+                tour = aco_solve(data.graph).tour;
             } else {
                 tour = trivial_solution(data.graph);
             }

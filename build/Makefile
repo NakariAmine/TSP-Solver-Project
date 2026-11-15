@@ -153,6 +153,19 @@ TSPsolver/fast:
 .PHONY : TSPsolver/fast
 
 #=============================================================================
+# Target rules for targets named compare_algorithms
+
+# Build rule for target.
+compare_algorithms: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 compare_algorithms
+.PHONY : compare_algorithms
+
+# fast build rule for target.
+compare_algorithms/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/compare_algorithms.dir/build.make CMakeFiles/compare_algorithms.dir/build
+.PHONY : compare_algorithms/fast
+
+#=============================================================================
 # Target rules for targets named tests
 
 # Build rule for target.
@@ -164,6 +177,54 @@ tests: cmake_check_build_system
 tests/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
 .PHONY : tests/fast
+
+compare_algorithms.o: compare_algorithms.cpp.o
+.PHONY : compare_algorithms.o
+
+# target to build an object file
+compare_algorithms.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/compare_algorithms.dir/build.make CMakeFiles/compare_algorithms.dir/compare_algorithms.cpp.o
+.PHONY : compare_algorithms.cpp.o
+
+compare_algorithms.i: compare_algorithms.cpp.i
+.PHONY : compare_algorithms.i
+
+# target to preprocess a source file
+compare_algorithms.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/compare_algorithms.dir/build.make CMakeFiles/compare_algorithms.dir/compare_algorithms.cpp.i
+.PHONY : compare_algorithms.cpp.i
+
+compare_algorithms.s: compare_algorithms.cpp.s
+.PHONY : compare_algorithms.s
+
+# target to generate assembly for a file
+compare_algorithms.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/compare_algorithms.dir/build.make CMakeFiles/compare_algorithms.dir/compare_algorithms.cpp.s
+.PHONY : compare_algorithms.cpp.s
+
+src/ACO_Solver.o: src/ACO_Solver.cpp.o
+.PHONY : src/ACO_Solver.o
+
+# target to build an object file
+src/ACO_Solver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/ACO_Solver.cpp.o
+.PHONY : src/ACO_Solver.cpp.o
+
+src/ACO_Solver.i: src/ACO_Solver.cpp.i
+.PHONY : src/ACO_Solver.i
+
+# target to preprocess a source file
+src/ACO_Solver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/ACO_Solver.cpp.i
+.PHONY : src/ACO_Solver.cpp.i
+
+src/ACO_Solver.s: src/ACO_Solver.cpp.s
+.PHONY : src/ACO_Solver.s
+
+# target to generate assembly for a file
+src/ACO_Solver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_project.dir/build.make CMakeFiles/my_project.dir/src/ACO_Solver.cpp.s
+.PHONY : src/ACO_Solver.cpp.s
 
 src/AdjacenceMatrixWeightedGraph.o: src/AdjacenceMatrixWeightedGraph.cpp.o
 .PHONY : src/AdjacenceMatrixWeightedGraph.o
@@ -391,8 +452,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... TSPsolver"
+	@echo "... compare_algorithms"
 	@echo "... my_project"
 	@echo "... tests"
+	@echo "... compare_algorithms.o"
+	@echo "... compare_algorithms.i"
+	@echo "... compare_algorithms.s"
+	@echo "... src/ACO_Solver.o"
+	@echo "... src/ACO_Solver.i"
+	@echo "... src/ACO_Solver.s"
 	@echo "... src/AdjacenceMatrixWeightedGraph.o"
 	@echo "... src/AdjacenceMatrixWeightedGraph.i"
 	@echo "... src/AdjacenceMatrixWeightedGraph.s"

@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/my_project.dir/src/ACO_Solver.cpp.o"
+  "CMakeFiles/my_project.dir/src/ACO_Solver.cpp.o.d"
   "CMakeFiles/my_project.dir/src/AdjacenceMatrixWeightedGraph.cpp.o"
   "CMakeFiles/my_project.dir/src/AdjacenceMatrixWeightedGraph.cpp.o.d"
   "CMakeFiles/my_project.dir/src/Coord_Parser.cpp.o"
